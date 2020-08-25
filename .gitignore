@@ -1,0 +1,5 @@
+# Backend
+*.pyc
+__pycache__/
+.env
+.idea
