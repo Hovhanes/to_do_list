@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  development:
+    build:
+      context: ../../../../to_do_list
+      dockerfile: .infrastructure/docker/Dockerfile
+    container_name: to-do
+    command: bash -c "pipenv run pipenv run python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ../../../../to_do_list:/usr/src/server
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../../../../to_do_list/.env
+    depends_on:
+      - db
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ../../../../to_do_list/.env
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+volumes:
+  postgres_data:
