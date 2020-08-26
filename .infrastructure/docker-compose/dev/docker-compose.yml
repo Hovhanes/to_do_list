@@ -3,7 +3,7 @@ services:
   development:
     build:
       context: ../../../../to_do_list
-      dockerfile: .infrastructure/docker/Dockerfile
+      dockerfile: .infrastructure/docker/dev/Dockerfile
     container_name: to-do
     command: bash -c "pipenv run pipenv run python manage.py runserver 0.0.0.0:8000"
     volumes:

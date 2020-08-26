@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path, re_path
+from django.views.generic import RedirectView
 from rest_framework_simplejwt import views as jwt_views
 from todolist.settings import DEBUG
 from rest_framework import permissions
@@ -20,6 +21,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/api/v1/tasks/')),
     path('admin/', admin.site.urls),
     path('api/v1/', include([
         path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),

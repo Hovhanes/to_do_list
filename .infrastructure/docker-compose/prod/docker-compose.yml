@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+  production:
+    build:
+      context: ../../../../to_do_list
+      dockerfile: .infrastructure/docker/prod/Dockerfile
+    command: pipenv run gunicorn todolist.wsgi:application --bind 0.0.0.0:8000
+    restart: always
+    volumes:
+      - ../../../../to_do_list:/usr/src/server
+    expose:
+      - 8000
+    env_file:
+      - ../../../.env.prod
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ../../../.env.prod
+  nginx:
+    build:
+      context: ../../../../to_do_list
+      dockerfile: .infrastructure/docker/nginx/Dockerfile
+    ports:
+      - 1337:80
+    depends_on:
+      - production
+
+volumes:
+  postgres_data:

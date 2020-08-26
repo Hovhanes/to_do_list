@@ -16,6 +16,7 @@ psycopg2-binary = "*"
 djangorestframework-simplejwt = "*"
 install = "*"
 drf-yasg = {extras = ["validation"],version = "*"}
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
