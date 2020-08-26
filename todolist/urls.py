@@ -33,8 +33,8 @@ if DEBUG:
     urlpatterns.append(
         path('api/v1/', include([
             path('session-auth/', include('rest_framework.urls', namespace='rest_framework')),
-            re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-            path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+            re_path(r'^docs(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+            path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
             path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
         ])),
     )
