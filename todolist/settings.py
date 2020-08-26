@@ -1,12 +1,11 @@
 from pathlib import Path
 import os
-from decouple import config
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(" ")
+DEBUG = os.environ.get('DEBUG', default=False)
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -17,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
+    'drf_yasg',
     'apps.tasks',
 ]
 
@@ -54,11 +54,11 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': config('POSTGRES_USERNAME'),
-        'NAME': config('POSTGRES_DB'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': config('POSTGRES_PORT'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('POSTGRES_HOST'),
+        'PORT': os.environ.get('POSTGRES_PORT'),
     }
 }
 

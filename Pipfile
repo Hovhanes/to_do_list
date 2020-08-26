@@ -14,6 +14,8 @@ python-decouple = "*"
 psycopg2 = "*"
 psycopg2-binary = "*"
 djangorestframework-simplejwt = "*"
+install = "*"
+drf-yasg = {extras = ["validation"],version = "*"}
 
 [requires]
 python_version = "3.7"
