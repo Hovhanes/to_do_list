@@ -20,7 +20,7 @@ For create super user run following command without down the container and set y
 
 ```docker-compose exec development pipenv run python manage.py createsuperuser --email=admin@example.com --username=admin```
 
-* Use django admin panel for create users
+* Use django admin panel for create users  
 http://localhost:8000/admin/
 
 Only in dev mode (debug=True) you can  
@@ -61,7 +61,7 @@ docker-compose exec production pipenv run python manage.py migrate --noinput
 docker-compose exec production pipenv run python manage.py test --noinput
 ```
 
-* Use django admin panel for create users
-http://localhost:1337/admin/
+* Use django admin panel for create users  
+http://localhost:1337/admin/  
 
 * Open http://localhost:1337/ in browser
