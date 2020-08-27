@@ -2,12 +2,12 @@ version: "3.7"
 services:
   production:
     build:
-      context: ../../../../to_do_list
+      context: ../../../
       dockerfile: .infrastructure/docker/prod/Dockerfile
     command: pipenv run gunicorn todolist.wsgi:application --bind 0.0.0.0:8000
     restart: always
     volumes:
-      - ../../../../to_do_list:/usr/src/server
+      - ../../../:/usr/src/server
     expose:
       - 8000
     env_file:
@@ -23,7 +23,7 @@ services:
       - ../../../.env.prod
   nginx:
     build:
-      context: ../../../../to_do_list
+      context: ../../../
       dockerfile: .infrastructure/docker/nginx/Dockerfile
     ports:
       - 1337:80
