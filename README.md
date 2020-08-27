@@ -36,7 +36,7 @@ http://localhost:8000/api/v1/redoc/
 
 ### RUN PRODUCTION WITH DOCKERS
 
-* To run with docker in development mode, you should 
+* To run with docker in production mode, you should 
 set environment variables in file .env.prod
 * Run following commands
 ```
